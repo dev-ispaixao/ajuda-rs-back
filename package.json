@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --watch \"*.ts\" --exec \"ts-node\" ./src/index.ts",
-    "eslint:fix": "eslint --fix"
+    "eslint:fix": "eslint --fix",
+    "build": "tsc",
+    "deploy": "tsc && pm2 start ./build/index.js --name sosrs-api"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",

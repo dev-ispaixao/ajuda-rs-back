@@ -22,6 +22,24 @@ yarn start
 ```
 The application will be launched by [Nodemon](https://nodemon.com) so it's will restart automatically on file change
 
+## Deploy
+1) Instalar o PM2 globalmente
+```yarn global add pm2```
+2) Rodar o script de deploy:
+```yarn deploy```
+3) Configurar restart automático da aplicação caso o servidor fique offline e retorne:
+```pm2 startup```
+
+Comandos PM2 CLI úteis para monitoramento e gerenciamento da aplicação:
+
+pm2 list: Lista todos os processos gerenciados pelo PM2.
+
+pm2 stop sosrs-api : Para a app.
+
+pm2 restart sosrs-api : Reinicia a app.
+
+pm2 delete sosrs-api : Remove a app do PM2.
+
 ## Routes
 ### Criação de requisição de ajuda
 ```
@@ -54,7 +72,7 @@ Response
   ]
 }
 ```
- 
+
 ### Consulta de requisições de ajuda
 ```
 GET baseApi/requests
