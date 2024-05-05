@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { RequestHelp, RequestHelpDocument, RequestHelpInput, RequestHelpStatuses } from '../models/request.model'
+import { RequestHelp, RequestHelpInput, RequestHelpStatuses } from '../models/request.model'
 
 const createRequest = async (req: Request, res: Response) => {
   const { fullName, phone, address, need, document } = req.body
@@ -70,7 +70,7 @@ const finishRequest = async (req: Request, res: Response) => {
   const { document } = req.body
 
   if (!document) {
-    return res.status(422).json({ message: 'The fields document is required' })
+    return res.status(422).json({ message: 'The field document is required' })
   }
 
   const requestHelp = await RequestHelp.findOne({ document, status: RequestHelpStatuses.OPEN }).sort('-createdAt').exec()
