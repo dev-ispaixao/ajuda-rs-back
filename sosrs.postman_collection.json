@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "d18531b5-710e-4c26-b6ba-a9ef1e887d93",
+		"name": "sosrs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8566416",
+		"_collection_link": "https://bold-crescent-731260.postman.co/workspace/NIU~6e509cbb-f501-4ada-a3a4-9c79d12ee08e/collection/8566416-d18531b5-710e-4c26-b6ba-a9ef1e887d93?action=share&source=collection_link&creator=8566416"
+	},
+	"item": [
+		{
+			"name": "request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fullName\": \"Pedro Almeida\",\r\n  \"phone\": \"16981305755\",\r\n  \"address\": \"Av. Dr. Joao Pires de Camargo\",\r\n  \"need\": \"Cama\",\r\n  \"document\": \"40826604889\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4500/request",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "requests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4500/requests",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "finish request",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"document\": \"40826604889\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4500/request/finish",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"request",
+						"finish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "shelters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4500/shelters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"shelters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "shelter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4500/shelter/1SazynPW6hAHbiyS57cs",
+					"host": [
+						"localhost"
+					],
+					"port": "4500",
+					"path": [
+						"shelter",
+						"1SazynPW6hAHbiyS57cs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mockoon abrigos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/abrigos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"abrigos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mockoon abrigo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/abrigo/1SazynPW6hAHbiyS57cs",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"abrigo",
+						"1SazynPW6hAHbiyS57cs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
