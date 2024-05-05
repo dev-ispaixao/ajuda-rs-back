@@ -32,6 +32,7 @@ const getShelter = async (req: Request, res: Response) => {
     const shelterResponse = response.data
 
     const shelter = {
+      id: shelterResponse.id,
       address: shelterResponse.address,
       phone: typeof shelterResponse.telefone === 'object' ? shelterResponse.telefone[0] : shelterResponse.telefone,
       name: shelterResponse.nome,
