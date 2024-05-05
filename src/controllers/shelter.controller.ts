@@ -29,7 +29,16 @@ const getShelter = async (req: Request, res: Response) => {
       }
     })
 
-    const shelter = response.data
+    const shelterResponse = response.data
+
+    const shelter = {
+      id: shelterResponse.id,
+      address: shelterResponse.address,
+      phone: typeof shelterResponse.telefone === 'object' ? shelterResponse.telefone[0] : shelterResponse.telefone,
+      name: shelterResponse.nome,
+      needs: shelterResponse.demanda,
+      vacancy: parseInt(shelterResponse.vagas) - parseInt(shelterResponse.vagas_ocupadas)
+    }
 
     return res.status(200).json({ data: shelter })
   } catch (error: any) {
