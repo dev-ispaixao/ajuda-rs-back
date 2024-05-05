@@ -1,11 +1,17 @@
 import mongoose, { Schema, Model, Document } from 'mongoose'
 
+export enum RequestHelpStatuses {
+  OPEN = 'open',
+  CLOSED = 'closed'
+}
+
 type RequestHelpDocument = Document & {
   fullName: string
   phone: string
   address: string
   need: string
   document: string
+  status: RequestHelpStatuses
 }
 
 type RequestHelpInput = {
@@ -14,6 +20,7 @@ type RequestHelpInput = {
   address: RequestHelpDocument['address']
   need: RequestHelpDocument['need']
   document: RequestHelpDocument['document']
+  status: RequestHelpDocument['status']
 }
 
 const requestHelpSchema = new Schema(
@@ -35,6 +42,11 @@ const requestHelpSchema = new Schema(
       default: true
     },
     document: {
+      type: Schema.Types.String,
+      required: true,
+      index: true
+    },
+    status: {
       type: Schema.Types.String,
       required: true,
       index: true

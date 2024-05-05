@@ -1,10 +1,9 @@
 import { Router } from 'express'
 import { 
-  createRequest, 
-  deleteRequest, 
+  createRequest,  
   getAllRequests, 
   getRequest,
-   updateRequest 
+  finishRequest
 } from '../controllers/request.controller'
 
 const requestRoute = () => {
@@ -15,10 +14,8 @@ const requestRoute = () => {
   router.get('/requests', getAllRequests)
 
   router.get('/request/:id', getRequest)
-
-  router.patch('/request/:id', updateRequest)
-
-  router.delete('/request/:id', deleteRequest)
+  
+  router.patch('/request/finish', finishRequest)
 
   return router;
 }
