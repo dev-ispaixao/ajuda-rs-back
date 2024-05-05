@@ -1,21 +1,42 @@
-import { Request, Response } from 'express';
-import axios, { Axios, AxiosError } from 'axios';
-import { Shelter } from 'src/types';
-const { SHELTER_API_HOST } = process.env
+import { Request, Response } from 'express'
+import axios, { AxiosError } from 'axios'
+const { SHELTER_API_HOST, SHELTER_API_AUTH_TOKEN } = process.env
 
 const getAllShelters = async (req: Request, res: Response) => {
-  //Apenas simução pois ainda não temos a api de consulta
   try {
-    const response = await axios.get(`${SHELTER_API_HOST}/abrigos`);
+    const response = await axios.get(`${SHELTER_API_HOST}/abrigos`, { 
+      headers: {
+        Authorization: SHELTER_API_AUTH_TOKEN
+      }
+    })
 
-    const shelters = response.data;
+    const shelters = response.data
 
-    return res.status(200).json({ data: shelters });
+    return res.status(200).json({ data: shelters })
   } catch (error: any) {
     const err = error as AxiosError
-    console.error('Error fetching data from the external API:', err);
-    return res.status(500).json({ err });
+    console.error('Error fetching data from the external API:', err)
+    return res.status(500).json({ err })
   }
-};
+}
 
-export { getAllShelters };
+const getShelter = async (req: Request, res: Response) => {
+  const { id } = req.params
+  try {
+    const response = await axios.get(`${SHELTER_API_HOST}/abrigo/${id}`, { 
+      headers: {
+        Authorization: SHELTER_API_AUTH_TOKEN
+      }
+    })
+
+    const shelter = response.data
+
+    return res.status(200).json({ data: shelter })
+  } catch (error: any) {
+    const err = error as AxiosError
+    console.error('Error fetching data from the external API:', err)
+    return res.status(500).json({ err })
+  }
+}
+
+export { getAllShelters, getShelter }
