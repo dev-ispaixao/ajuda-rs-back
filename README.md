@@ -144,7 +144,7 @@ Response
 }
 ```
 
-#### Consulta de abrigos
+### Consulta de abrigo
 ```
 GET baseApi/shelters
 
