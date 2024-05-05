@@ -1,10 +1,14 @@
 import { Router } from 'express';
-import { getAllShelters } from '../controllers/shelter.controller';
+import { 
+  getAllShelters,
+  getShelter
+} from '../controllers/shelter.controller';
 
 const shelterRoute = () => {
   const router = Router();
 
-  router.get('/shelter', getAllShelters);
+  router.get('/shelters', getAllShelters);
+  router.get('/shelter/:id', getShelter);
 
   return router;
 };
