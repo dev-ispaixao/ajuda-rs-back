@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 
 import { connectToDatabase } from './databaseConnection'
 import { requestRoute } from './routes/request.route'
+import { shelterRoute } from './routes/shelter.route'
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.use('/', requestRoute())
+app.use('/', shelterRoute())
 
 app.get('/', (req, res) => {
   return res.json({ message: 'Hello World!' })
