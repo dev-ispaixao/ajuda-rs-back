@@ -9,7 +9,7 @@ type RequestHelpDocument = Document & {
   fullName: string
   phone: string
   address: string
-  need: string
+  need: string[]
   document: string
   status: RequestHelpStatuses
 }
@@ -38,8 +38,13 @@ const requestHelpSchema = new Schema(
       required: true
     },
     need: {
-      type: Schema.Types.String,
-      default: true
+      type: [Schema.Types.String],
+      validate: {
+        validator: function(v: string[]) {
+          return v && v.length > 0
+        },
+        message: '"need" field must have at least one item'
+      }
     },
     document: {
       type: Schema.Types.String,
