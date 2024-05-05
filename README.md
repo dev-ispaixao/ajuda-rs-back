@@ -156,7 +156,7 @@ Response
     "phone": "string",
     "name": "string",
     "needs": "string",
-    "vacancy": "string"
+    "vacancy": "number"
   }
 }
 ```
