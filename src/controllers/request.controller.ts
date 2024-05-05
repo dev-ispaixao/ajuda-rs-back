@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { RequestHelp, RequestHelpInput } from '../models/request.model'
+import { RequestHelp, RequestHelpInput, RequestHelpStatuses } from '../models/request.model'
 
 const createRequest = async (req: Request, res: Response) => {
   const { fullName, phone, address, need, document } = req.body
@@ -19,6 +19,7 @@ const createRequest = async (req: Request, res: Response) => {
     address,
     need,
     document,
+    status: RequestHelpStatuses.OPEN
   }
 
   const requestCreated = await RequestHelp.create(userInput)
@@ -27,7 +28,7 @@ const createRequest = async (req: Request, res: Response) => {
 }
 
 const getAllRequests = async (req: Request, res: Response) => {
-  const requests = await RequestHelp.find().sort('-createdAt').exec()
+  const requests = await RequestHelp.find({status: RequestHelpStatuses.OPEN}).sort('-createdAt').exec()
 
   return res.status(200).json({ data: requests })
 }
@@ -48,10 +49,10 @@ const updateRequest = async (req: Request, res: Response) => {
   const { id } = req.params
   const { enabled, fullName, role } = req.body
 
-  const user = await RequestHelp.findOne({ _id: id })
+  const requestHelp = await RequestHelp.findOne({ _id: id })
 
-  if (!user) {
-    return res.status(404).json({ message: `User with id "${id}" not found.` })
+  if (!requestHelp) {
+    return res.status(404).json({ message: `Request with id "${id}" not found.` })
   }
 
   if (!fullName || !role) {
@@ -63,6 +64,28 @@ const updateRequest = async (req: Request, res: Response) => {
   const userUpdated = await RequestHelp.findById(id)
 
   return res.status(200).json({ data: userUpdated })
+}
+
+const finishRequest = async (req: Request, res: Response) => {
+  const { document } = req.body
+
+  if (!document) {
+    return res.status(422).json({ message: 'The field document is required' })
+  }
+
+  const requestHelp = await RequestHelp.findOne({ document, status: RequestHelpStatuses.OPEN }).sort('-createdAt').exec()
+
+  if (!requestHelp) {
+    return res.status(404).json({ message: `Request for the given document not found.` })
+  }
+
+  await RequestHelp.updateOne({ _id: requestHelp._id }, {
+    status: RequestHelpStatuses.CLOSED
+  })
+
+  const requestHelpUpdated = await RequestHelp.findById(requestHelp._id)
+
+  return res.status(200).json({ data: requestHelpUpdated })
 }
 
 const deleteRequest = async (req: Request, res: Response) => {
@@ -89,4 +112,9 @@ const isValidCPF = (document: string) => {
   return !(rest(10,2) !== validator[0] || rest(11,1) !== validator[1])
 }
 
-export { createRequest, deleteRequest, getAllRequests, getRequest, updateRequest }
+export { 
+  createRequest,
+  getAllRequests,
+  getRequest,
+  finishRequest
+}

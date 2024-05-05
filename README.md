@@ -26,6 +26,8 @@ The application will be launched by [Nodemon](https://nodemon.com) so it's will 
 ### Criação de requisição de ajuda
 ```
 POST baseApi/request
+
+Request
 {
   "fullName": "string",
   "phone": "string",
@@ -33,11 +35,8 @@ POST baseApi/request
   "need": "string",
   "document": "string"
 }
-```
- 
-### Consulta de requisições de ajuda
-```
-GET baseApi/requests
+
+Response
 {
   "data": [
     {
@@ -47,6 +46,59 @@ GET baseApi/requests
       "address": "string",
       "need": "string",
       "document": "string",
+      "status": "string",
+      "createdAt": "string",
+      "updatedAt": "string",
+      "__v": 0
+    }
+  ]
+}
+```
+ 
+### Consulta de requisições de ajuda
+```
+GET baseApi/requests
+
+Response
+{
+  "data": [
+    {
+      "_id": "string",
+      "fullName": "string",
+      "phone": "string",
+      "address": "string",
+      "need": "string",
+      "document": "string",
+      "status": "string",
+      "createdAt": "string",
+      "updatedAt": "string",
+      "__v": 0
+    }
+  ]
+}
+```
+### Finalização de requisição de ajuda
+```
+PATCH baseApi/request/finish
+
+Request
+{
+  "document": "string
+}
+
+Response
+{
+  "data": [
+    {
+      "_id": "string",
+      "fullName": "string",
+      "phone": "string",
+      "address": "string",
+      "need": "string",
+      "document": "string",
+      "status": "string",
+      "createdAt": "string",
+      "updatedAt": "string",
       "__v": 0
     }
   ]
