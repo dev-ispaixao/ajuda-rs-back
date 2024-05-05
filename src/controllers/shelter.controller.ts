@@ -14,7 +14,7 @@ const getAllShelters = async (req: Request, res: Response) => {
     return res.status(200).json({ data: shelters });
   } catch (error: any) {
     console.error('Error fetching data from the external API:', error);
-    return res.status(400).json({ error });
+    return res.status(error.response.status).json({ error });
   }
 };
 
