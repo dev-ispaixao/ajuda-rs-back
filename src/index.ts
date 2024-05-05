@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 import { connectToDatabase } from './databaseConnection'
 import { requestRoute } from './routes/request.route'
@@ -12,6 +13,7 @@ const PORT = parseInt(process.env.PORT || '4500')
 
 const app = express()
 
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
