@@ -111,6 +111,45 @@ GET baseApi/shelters
 
 Response
 {
+  "data": [
+    {
+      "id": "string",
+      "nome": "string",
+      "latitude": "number",
+      "estrutura_pessoas": "string",
+      "roupa_cama": "string",
+      "update_in": {
+        "seconds": "number",
+        "nanoseconds": "number"
+      },
+      "create_in": {
+        "seconds": "number",
+        "nanoseconds": "number"
+      },
+      "vagas_ocupadas": "string",
+      "longitude": "number",
+      "nome_contato": "string",
+      "ext_getLatLongStatus": {
+        "status": "string"
+      },
+      "demanda": "string",
+      "telefone": "string",
+      "pmpa": "string",
+      "address": "string",
+      "banheiros": "string",
+      "vagas": "string",
+      "cozinha": "string"
+    }
+  ]
+}
+```
+
+#### Consulta de abrigos
+```
+GET baseApi/shelters
+
+Response
+{
   "data": {
     "id": "string",
     "address": "string",
